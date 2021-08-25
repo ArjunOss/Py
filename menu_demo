@@ -1,0 +1,63 @@
+from tkinter import *
+from tkinter import messagebox
+def show_msg():
+    messagebox.showinfo("Hello", "Good Morning")
+
+
+root  = Tk()
+root.geometry("500x400")
+
+#create menubar
+menubar = Menu(root)
+#add menubar to root
+root.config(menu = menubar)
+
+#create file_menu
+file_name = Menu(menubar, tearoff = 0)
+
+#add meun_item to file_menu
+file_name.add_command(label = "Show message", command = show_msg)
+file_name.add_command(label = "New File")
+file_name.add_command(label = "New Project")
+file_name.add_command(label = "Open")
+file_name.add_command(label = "Save")
+#file_name.add_command(label = "Color")
+
+#creating menu_item's menu
+col_item = Menu(file_name, tearoff = 0)
+#col_item.add_command(label = "Foreground color")
+for_item = Menu(col_item, tearoff = 0)
+for_item.add_command(label = "red")
+for_item.add_command(label = "blue")
+for_item.add_separator()
+for_item.add_command(label = "default")
+col_item.add_cascade(label = "foreground color", menu = for_item)
+
+bac_item = Menu(col_item, tearoff = 0)
+bac_item.add_command(label = "red")
+bac_item.add_command(label = "black")
+bac_item.add_separator()
+bac_item.add_command(label = "default")
+col_item.add_cascade(label = "background color", menu = bac_item)
+
+#col_item.add_command(label = "Background color")
+file_name.add_cascade(label = "Color", menu = col_item)
+
+
+#add file_menu to menubar
+file_name.add_command(label = "Settings")
+file_name.add_separator()
+file_name.add_command(label = "Exit", command = root.destroy )
+
+menubar.add_cascade(label = "File", menu = file_name, underline = 0)
+
+
+
+help_menu = Menu(menubar, tearoff = 0)
+help_menu.add_command(label = "About Us")
+help_menu.add_command(label = "Contact Us")
+
+menubar.add_cascade(label = "Help", menu = help_menu)
+
+
+root.mainloop() 
